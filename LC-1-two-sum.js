@@ -38,15 +38,31 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-    for (let i = 0; i < nums.length; i++) {
+    for(let i = 0; i < nums.length; i++) {
         for(let j = 1; j < nums.length; j++) {
             if ((nums[i] + nums[j]) == target) {
                 return [i, j];
             }
         }
     }
+    return null;
 }
 
 nums1 = [2, 7, 11, 15]
 
-console.log(twoSum(nums1, 9))
+// console.log(twoSum(nums1, 9))
+
+var twoSum2 = function (nums, target) {
+    let hashMap = {};
+    for(let i = 0; i < nums.length; i++) {
+        if(hashMap.hasOwnProperty(target - nums[i])){
+            return [i, hashMap[target-nums[i]]]
+        }
+        else {
+            hashMap[nums[i]] = i;
+        }
+    }
+    return null;
+}
+
+console.log(twoSum2(nums1, 9))
